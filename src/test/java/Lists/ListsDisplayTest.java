@@ -1,7 +1,6 @@
-package CarLists;
+package Lists;
 
-import Car.CarModel;
-import View.ListsDisplay;
+import Models.CarModel;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

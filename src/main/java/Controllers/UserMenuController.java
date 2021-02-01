@@ -1,10 +1,11 @@
-import User.UserModel;
+package Controllers;
+
+import Models.UserModel;
 import View.ListsDisplay;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserMenuController extends MainController{

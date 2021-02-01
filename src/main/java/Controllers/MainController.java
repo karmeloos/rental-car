@@ -1,4 +1,7 @@
+package Controllers;
+
 import Lists.CarLists;
+import Lists.RentedCarsList;
 import Lists.UserLists;
 
 import java.util.Scanner;
@@ -8,7 +11,13 @@ public class MainController {
     private CarMenuController carMenuController = new CarMenuController();
     private UserLists users = new UserLists();
     private UserMenuController userMenuController = new UserMenuController();
+    private RentedCarsList rentedCarsList = new RentedCarsList();
+    private RentController rentController = new RentController();
     private Scanner scanner = new Scanner(System.in);
+
+    public RentedCarsList getRentedCarsList() {
+        return rentedCarsList;
+    }
 
     public CarLists getCars() {
         return cars;
@@ -32,7 +41,9 @@ public class MainController {
             break;
             case 6: userMenuController.activateUser();
             break;
-            case 7:
+            case 7: rentController.rentACar();
+            break;
+            case 8: rentController.displayCurrentlyRented();
         }
     }
     public String collectNotEmpty(String title){

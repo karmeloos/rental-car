@@ -1,4 +1,4 @@
-package User;
+package Models;
 
 import java.time.LocalDate;
 
@@ -17,7 +17,9 @@ public class UserModel {
         this.bithDate = bithDate;
         this.rentedCars = 0;
     }
-
+    public void setRentedCars(){
+        this.rentedCars += 1;
+    }
     public String getName() {
         return name;
     }

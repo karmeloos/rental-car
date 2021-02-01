@@ -11,21 +11,26 @@ System można podzielić na cztery mniejsze podsystemy:
 - księgowość.
 
 Wymagania stawiane części odpowiedzialnej za flotę samochodów:
-- przechowywanie informacji o danym samochodzie. Każdy samochód posiada następujące cechy: markę[String], model[String], przebieg[int], data produkcji[LocalDate], cena za dzień wynajmu[double] (*dla chętnych użycie BigDecimal zamiast double)
+- przechowywanie informacji o danym samochodzie. Każdy samochód posiada następujące cechy:
+markę[String], model[String], przebieg[int], data produkcji[LocalDate], cena za dzień wynajmu[double] (*dla chętnych użycie BigDecimal zamiast double)
 - przechowywanie informacji o dostępnych oraz wynajętych samochodach
 - system potrafi wyświetlić wszystkie dostępne (czyli takie, które obecnie nie są przez nikogo wynajęte) samochody
 - istnieje możliwość edycji ceny wynajmu samochodu (podana cena musi być większa od zera)
-- możliwe jest dodanie nowego samochodu. System wymaga podanych następujących danych: marka(musi być podana), model(musi być podana), przebieg(musi być to liczba większa od zera), data produkcji(podawana w formacie yyyy-mm-dd) oraz cena za dzień wynajmu (musi być liczbą, większą od 0)
+- możliwe jest dodanie nowego samochodu. System wymaga podanych następujących danych:
+marka(musi być podana), model(musi być podana), przebieg(musi być to liczba większa od zera), data produkcji(podawana w formacie yyyy-mm-dd) oraz cena za dzień wynajmu (musi być liczbą, większą od 0)
 - na starcie systemu istnieje kilka samochodów dodanych do systemu (przygotowanych w kodzie aplikacji)
 - system może maksymalnie przechowywać maksymalnie 100 pojazdów
 
 Wymagania stawiane części odpowiedzalnej za użytkowników:
-- przechowujemy następujące dane o użytkownikach: imie[String], nazwisko[String], pesel[String], data urodzenia[LocalDate], ilość wynajętych samochodów [int]
+- przechowujemy następujące dane o użytkownikach:
+imie[String], nazwisko[String], pesel[String], data urodzenia[LocalDate], ilość wynajętych samochodów [int]
 - system dzieli użytkowników na aktywnych oraz nieaktywnych
 - domyślnie każdy nowo dodany użytkownik jest nieaktywny
 - aktywacja użytkownika odbywa się poprzez osobą opcję - po jej wybraniu wyświetla się lista wszystkich nieaktywnych użytkowników, po wybraniu jednego z nich użytkownik zostaje aktywowany
 - system posiada opcję do wyświetlenia wszystkich aktywnych użytkowników
-- podczas dodawania użytkownika wymagane są następujące dane: imię (nie można zostawić pustego), nazwisko (nie można zostawić pustego), pesel (11 cyfr). Do wyliczenia daty urodzenia wykorzystujemy numer pesel (rozważ przypadek osób urodzonych po 2000 roku)
+- podczas dodawania użytkownika wymagane są następujące dane:
+imię (nie można zostawić pustego), nazwisko (nie można zostawić pustego), pesel (11 cyfr).
+Do wyliczenia daty urodzenia wykorzystujemy numer pesel (rozważ przypadek osób urodzonych po 2000 roku)
 
 Wymagania stawiane części odpowiedzialnej za wynajem:
 - samochody, które są wynajęte znikają z listy dostępnych samochodów
@@ -119,7 +124,7 @@ Cars in our rental:
 Select car: 3
 For how many days? 14
 Rent will cost 10374.00. Are you sure ? [yes/no] yes
-Car rented
+Models rented
 
 - wypisanie wszystkich wynajmów:
 Active rentals:

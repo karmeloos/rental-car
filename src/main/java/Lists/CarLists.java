@@ -1,6 +1,6 @@
-package CarLists;
+package Lists;
 
-import Car.CarModel;
+import Models.CarModel;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Car;
+package Models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

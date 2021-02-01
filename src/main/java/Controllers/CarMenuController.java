@@ -1,4 +1,6 @@
-import Car.CarModel;
+package Controllers;
+
+import Models.CarModel;
 import View.ListsDisplay;
 
 import java.math.BigDecimal;

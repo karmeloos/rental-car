@@ -1,11 +1,8 @@
-package CarLists;
-
-import Car.CarModel;
+package View;
 
 import java.util.LinkedList;
-import java.util.List;
 
-public class ListsDisplay<T> {
+public class  ListsDisplay<T> {
     private LinkedList<T> list;
     private int count;
 
