@@ -1,0 +1,152 @@
+Celem projektu jest stworzenie systemu, który zarządza firmą wynajmującą samochody.
+
+Komunikacja z użytkownikiem odbywa się poprzez menu konsolowe.
+Podczas komunikacji pewne pola wprowadzane przez użytkownika podlegają sprawdzeniu - wszystkie warunki są opisane przy danej opcji.
+W przypadku gdy którykolwiek z wyszczególnionych nie jest spełniony dana opcja jest przerywana i następuje powrót do głównego menu.
+
+System można podzielić na cztery mniejsze podsystemy:
+- zarządzanie flotą samochodów
+- zarządzanie użytkownikami
+- obsługa wynajmu samochodów
+- księgowość.
+
+Wymagania stawiane części odpowiedzialnej za flotę samochodów:
+- przechowywanie informacji o danym samochodzie. Każdy samochód posiada następujące cechy: markę[String], model[String], przebieg[int], data produkcji[LocalDate], cena za dzień wynajmu[double] (*dla chętnych użycie BigDecimal zamiast double)
+- przechowywanie informacji o dostępnych oraz wynajętych samochodach
+- system potrafi wyświetlić wszystkie dostępne (czyli takie, które obecnie nie są przez nikogo wynajęte) samochody
+- istnieje możliwość edycji ceny wynajmu samochodu (podana cena musi być większa od zera)
+- możliwe jest dodanie nowego samochodu. System wymaga podanych następujących danych: marka(musi być podana), model(musi być podana), przebieg(musi być to liczba większa od zera), data produkcji(podawana w formacie yyyy-mm-dd) oraz cena za dzień wynajmu (musi być liczbą, większą od 0)
+- na starcie systemu istnieje kilka samochodów dodanych do systemu (przygotowanych w kodzie aplikacji)
+- system może maksymalnie przechowywać maksymalnie 100 pojazdów
+
+Wymagania stawiane części odpowiedzalnej za użytkowników:
+- przechowujemy następujące dane o użytkownikach: imie[String], nazwisko[String], pesel[String], data urodzenia[LocalDate], ilość wynajętych samochodów [int]
+- system dzieli użytkowników na aktywnych oraz nieaktywnych
+- domyślnie każdy nowo dodany użytkownik jest nieaktywny
+- aktywacja użytkownika odbywa się poprzez osobą opcję - po jej wybraniu wyświetla się lista wszystkich nieaktywnych użytkowników, po wybraniu jednego z nich użytkownik zostaje aktywowany
+- system posiada opcję do wyświetlenia wszystkich aktywnych użytkowników
+- podczas dodawania użytkownika wymagane są następujące dane: imię (nie można zostawić pustego), nazwisko (nie można zostawić pustego), pesel (11 cyfr). Do wyliczenia daty urodzenia wykorzystujemy numer pesel (rozważ przypadek osób urodzonych po 2000 roku)
+
+Wymagania stawiane części odpowiedzialnej za wynajem:
+- samochody, które są wynajęte znikają z listy dostępnych samochodów
+- wynajem samochodów - wybieramy aktywnego użytkownika oraz samochód, który nie jest wynajęty, podajemy ilość dni (ilość większa od zera) oraz akceptujemy stawkę (yes/no)
+- promujemy użytkowników, którzy są stałymi klientami - za więcej niż 100 wynajętych samochodów przyznajemy 10% zniżki
+- dla kierowców, którzy mają ponad 40 lat oferujemy dodatkowe 10% zniżki
+- na potrzeby rozliczeń finansowych przechowujemy informację o wszystkich wynajmach - zarówno obecnych jak i przeszłych (już zakończonych)
+- istnieje możliwość wyświetlenia wszystkich obecnych wynajmów, gdzie wypisywane są następujące dane: imię, nazwisko wynajmującego, marka oraz model samochodu, ilość dni na jaki samochód został wynajęty, koszt wynajmu (uwzględniając zniżki)
+- dodatkową opcją jest możliwość wczesnego przerwania wynajmu - wtedy samochód zostaje zwrócony do puli, a informacja o wynajmie trafia do archiwum - nasza firma nie obsługuje zwrotów kosztów za wcześniejsze zerwanie umowy
+- w archiwum przechowujemy następujące dane: samochód, użytkownik, dzień zawracia umowy, długość wynajmu, koszt umowy
+
+Wymagania stawiane części odpowiedzialnej za księgowość:
+- na podstawie archiwalnych informacji o wynajmnie wyświetla statystyki dla obecnego miesiąca, czyli ilość wynajmów które zostały zawarte w obecnym miesiącu i są już skończone oraz całkowity zarobek z tych umów
+- wyświetlenie raportu dla całego roku. Rok pobieramy jako obecny rok, a dane wyświetlamy miesięcznie dla wszystkich miesiący (styczeń-grudzień). Dodatkowo na końcu wyświetlane jest podsumowanie roczne - całkowita ilość skończonych umów, które zostały zawarte w tym roku oraz całkowity zarobek.
+
+
+
+Przykłady działającej aplikacji:
+ - menu główne:
+Welcome to car rental.
+  1. List available cars
+  2. Edit rental price
+  3. Add new car
+  4. List active users
+  5. Add user
+  6. Activate a user
+  7. Rent a car
+  8. List all rented cars
+  9. Return a car
+  10. Display monthly report
+  11. Display yearly report
+  12. Exit
+Choose your option:
+
+- dostępne samochody:
+Cars in our rental:
+1: Opel - Corsa. Mileage: 120000, year of production: 2010-04-13, price per day: 80.00
+2: Skoda - Fabia. Mileage: 220000, year of production: 2011-07-22, price per day: 110.00
+
+- edycja ceny wynajmu samochodu:
+WWhich car would you like to edit price for ? Cars in our rental:
+ 1: Opel - Corsa. Mileage: 120000, year of production: 2010-04-13, price per day: 80.00
+ 2: Skoda - Fabia. Mileage: 220000, year of production: 2011-07-22, price per day: 110.00
+ 2
+ Enter new price ? 1000.12
+
+- dodawanie nowego samochodu:
+Specify data for new car:
+Specify brand: Honda
+Specify model: Civic
+Specify mileage: 1000231
+Specify year of production(in format yyyy-mm-dd): 2000-11-01
+Specify price per day: 741
+
+- dodawanie nowego samochodu (podanie błędnych danych):
+Specify data for new car:
+Specify brand: Honda
+Specify model: Accord
+Specify mileage: -5
+Invalid mileage - aborting...
+
+- dodawnie nowego użytkownika:
+Add details for new user:
+Enter name: Jan
+Enter last name: Kowalski
+Enter pesel: 99010112345
+
+- dodawanie nowego użytkownika (nieprawidłowe dane):
+Add details for new user:
+Enter name: Jan
+Enter last name: Kowalski
+Enter pesel: 124
+Pesel is incorrect, should contain 11 digits - exiting...
+
+- aktywacja użytkownika:
+1: Jan Kowalski. Pesel: 99010112345, birth date: 1999-01-01. Cars rented so far: 0
+Enter user number to activate: 1
+
+- wylistowanie aktywnych użytkowników:
+Active users:
+1: Jan Kowalski. Pesel: 99010112345, birth date: 1999-01-01. Cars rented so far: 0
+
+- wynajem samochodu:
+Active users:
+1: Jan Kowalski. Pesel: 99010112345, birth date: 1999-01-01. Cars rented so far: 0
+Select user: 1
+Cars in our rental:
+1: Opel - Corsa. Mileage: 120000, year of production: 2010-04-13, price per day: 80.00
+2: Skoda - Fabia. Mileage: 220000, year of production: 2011-07-22, price per day: 1000.12
+3: Honda - Civic. Mileage: 1000231, year of production: 2000-11-01, price per day: 741.00
+Select car: 3
+For how many days? 14
+Rent will cost 10374.00. Are you sure ? [yes/no] yes
+Car rented
+
+- wypisanie wszystkich wynajmów:
+Active rentals:
+1: Jan Kowalski rents car Honda Civic for 14 days for a total cost of 10374.00
+
+- przerwanie wynajmu:
+Active rentals:
+1: Jan Kowalski rents car Honda Civic for 14 days for a total cost of 10374.00
+Which rent should be aborted? 1
+Rental aborted
+
+- raport miesięczny:
+Earnings for SEPTEMBER. Total number of rentals: 1. Income: 10374.00
+
+- raport roczny:
+Year 2020 summary: 
+Earnings for JANUARY:    Total number of rentals:    0. Income: 0.00
+Earnings for FEBRUARY:   Total number of rentals:    0. Income: 0.00
+Earnings for MARCH:      Total number of rentals:    0. Income: 0.00
+Earnings for APRIL:      Total number of rentals:    0. Income: 0.00
+Earnings for MAY:        Total number of rentals:    0. Income: 0.00
+Earnings for JUNE:       Total number of rentals:    0. Income: 0.00
+Earnings for JULY:       Total number of rentals:    0. Income: 0.00
+Earnings for AUGUST:     Total number of rentals:    0. Income: 0.00
+Earnings for SEPTEMBER:  Total number of rentals:    1. Income: 10374.00
+Earnings for OCTOBER:    Total number of rentals:    0. Income: 0.00
+Earnings for NOVEMBER:   Total number of rentals:    0. Income: 0.00
+Earnings for DECEMBER:   Total number of rentals:    0. Income: 0.00
+Earnings for 2020. Total number of rentals: 1. Income: 10374.00
+
